@@ -1,0 +1,44 @@
+@model GestionInscriptions.Models.Inscription
+
+@{
+    ViewData["Title"] = "Détails de l'Inscription";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0"><i class="bi bi-info-circle"></i> Détails de l'Inscription</h3>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Date d'inscription</dt>
+                        <dd class="col-sm-8">@Model.Date.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-4">Étudiant</dt>
+                        <dd class="col-sm-8">@Model.Etudiant.Prenom @Model.Etudiant.Nom</dd>
+
+                        <dt class="col-sm-4">Matricule</dt>
+                        <dd class="col-sm-8">@Model.Etudiant.Matricule</dd>
+
+                        <dt class="col-sm-4">Année Scolaire</dt>
+                        <dd class="col-sm-8">@Model.AnneeScolaire.Libelle</dd>
+
+                        <dt class="col-sm-4">Classe</dt>
+                        <dd class="col-sm-8">@Model.Classe.Libelle</dd>
+
+                        <dt class="col-sm-4">Montant</dt>
+                        <dd class="col-sm-8"><strong>@Model.Montant.ToString("N0") FCFA</strong></dd>
+                    </dl>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="Index" class="btn btn-primary">
+                            <i class="bi bi-arrow-left"></i> Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

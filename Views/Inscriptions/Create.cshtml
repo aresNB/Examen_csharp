@@ -1,0 +1,74 @@
+@model GestionInscriptions.ViewModels.InscriptionViewModel
+
+@{
+    ViewData["Title"] = "Nouvelle Inscription";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="bi bi-pencil-square"></i> Nouvelle Inscription</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Date" class="form-label"></label>
+                                <input asp-for="Date" class="form-control" type="date" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Montant" class="form-label"></label>
+                                <input asp-for="Montant" class="form-control" type="number" step="0.01" />
+                                <span asp-validation-for="Montant" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EtudiantId" class="form-label"></label>
+                            <select asp-for="EtudiantId" asp-items="Model.Etudiants" class="form-select">
+                                <option value="">-- Sélectionner un étudiant --</option>
+                            </select>
+                            <span asp-validation-for="EtudiantId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AnneeScolaireId" class="form-label"></label>
+                            <select asp-for="AnneeScolaireId" asp-items="Model.AnneeScolaires" class="form-select">
+                                <option value="">-- Sélectionner une année --</option>
+                            </select>
+                            <span asp-validation-for="AnneeScolaireId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ClasseId" class="form-label"></label>
+                            <select asp-for="ClasseId" asp-items="Model.Classes" class="form-select">
+                                <option value="">-- Sélectionner une classe --</option>
+                            </select>
+                            <span asp-validation-for="ClasseId" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Annuler
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Enregistrer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
